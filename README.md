@@ -26,7 +26,7 @@ The inversion of diffusion model sampling, which aims to find the corresponding 
 ## What's New?
 ### 🔥 We use the thought of bidirectional explicit to enable exact inversion
 ![Some edits](assets/belm_linear.drawio.png)
-> **Schematic description** of DDIM (left) and BELM (right). DDIM uses `$\mathbf{x}_i$` and `$\boldsymbol{\varepsilon}_\theta(\mathbf{x}_i,i)$` to calculate `$\mathbf{x}_{i-1}$` based on a linear relation between `$\mathbf{x}_i$`, `$\mathbf{x}_{i-1}$` and `$\boldsymbol{\varepsilon}_\theta(\mathbf{x}_i,i)$` (represented by the <span style="color:blue">blue line</span>). However, DDIM inversion uses `$\mathbf{x}_{i-1}$` and `$\boldsymbol{\varepsilon}_\theta(\mathbf{x}_{i-1},i-1)$` to calculate `$\mathbf{x}_{i}$` based on a different linear relation represented by the <span style="color:red">red line</span>. This mismatch leads to the inexact inversion of DDIM. In contrast, BELM seeks to establish a linear relation between `$\mathbf{x}_{i-1}$`, `$\mathbf{x}_i$`, `$\mathbf{x}_{i+1}$` and `$\boldsymbol{\varepsilon}_\theta(\mathbf{x}_{i}, i)$` (represented by the <span style="color:green">green line</span>). BELM and its inversion are derived from this unitary relation, which facilitates the exact inversion. Specifically, BELM uses the linear combination of `$\mathbf{x}_i$`, `$\mathbf{x}_{i+1}$` and `$\boldsymbol{\varepsilon}_\theta(\mathbf{x}_{i},i)$` to calculate `$\mathbf{x}_{i-1}$`, and the BELM inversion uses the linear combination of `$\mathbf{x}_{i-1}$`, `$\mathbf{x}_i$` and `$\boldsymbol{\varepsilon}_\theta(\mathbf{x}_{i},i)$` to calculate `$\mathbf{x}_{i+1}$`. The bidirectional explicit constraint means this linear relation does not include the derivatives at the bidirectional endpoint, that is, `$\boldsymbol{\varepsilon}_\theta(\mathbf{x}_{i-1},i-1)$` and `$\boldsymbol{\varepsilon}_\theta(\mathbf{x}_{i+1},i+1)$`.
+> **Schematic description** of DDIM (left) and BELM (right). DDIM uses $`\mathbf{x}_i`$ and $`\boldsymbol{\varepsilon}_\theta(\mathbf{x}_i,i)`$ to calculate $`\mathbf{x}_{i-1}`$ based on a linear relation between $`\mathbf{x}_i`$, $`\mathbf{x}_{i-1}`$ and $`\boldsymbol{\varepsilon}_\theta(\mathbf{x}_i,i)`$ (represented by the <span style="color:blue">blue line</span>). However, DDIM inversion uses $`\mathbf{x}_{i-1}`$ and $`\boldsymbol{\varepsilon}_\theta(\mathbf{x}_{i-1},i-1)`$ to calculate $`\mathbf{x}_{i}`$ based on a different linear relation represented by the <span style="color:red">red line</span>. This mismatch leads to the inexact inversion of DDIM. In contrast, BELM seeks to establish a linear relation between $`\mathbf{x}_{i-1}`$, $`\mathbf{x}_i`$, $`\mathbf{x}_{i+1}`$ and $`\boldsymbol{\varepsilon}_\theta(\mathbf{x}_{i}, i)`$ (represented by the <span style="color:green">green line</span>). BELM and its inversion are derived from this unitary relation, which facilitates the exact inversion. Specifically, BELM uses the linear combination of $`\mathbf{x}_i`$, $`\mathbf{x}_{i+1}`$ and $`\boldsymbol{\varepsilon}_\theta(\mathbf{x}_{i},i)`$ to calculate $`\mathbf{x}_{i-1}`$, and the BELM inversion uses the linear combination of $`\mathbf{x}_{i-1}`$, $`\mathbf{x}_i`$ and $`\boldsymbol{\varepsilon}_\theta(\mathbf{x}_{i},i)`$ to calculate $`\mathbf{x}_{i+1}`$. The bidirectional explicit constraint means this linear relation does not include the derivatives at the bidirectional endpoint, that is, $`\boldsymbol{\varepsilon}_\theta(\mathbf{x}_{i-1},i-1)`$ and $`\boldsymbol{\varepsilon}_\theta(\mathbf{x}_{i+1},i+1)`$.
 
 ### 🔥 We introduce a generic formulation of the exact inversion samplers, BELM.
 <!-- ![Some edits](assets/belm.jpg)
@@ -60,12 +60,12 @@ $$\mathbf{x}_{i+1}= \frac{h_{i+1}^2}{h_i^2}\frac{\alpha_{i+1}}{\alpha_{i-1}}\mat
 first, please switch to the root directory.
 #### CIFAR10 sampling
 ```shell
-python3 ./cn_dm/scripts/cifar10.py --test_num 10 --batch_size 32 --num_inference_steps 100 --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id xxx/ddpm_ema_cifar10
+python3 ./cn_dm/scripts/cifar10.py --test_num 10 --batch_size 32 --num_inference_steps 100 --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id `$x/ddpm_ema_cifar10
 ```
 
 #### CelebA-HQ sampling
 ```shell
-python3 ./cn_dm/scripts/celeba.py --test_num 10 --batch_size 32 --num_inference_steps 100 --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id xxx/ddpm_ema_cifar10
+python3 ./cn_dm/scripts/celeba.py --test_num 10 --batch_size 32 --num_inference_steps 100 --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id `$x/ddpm_ema_cifar10
 ```
 
 #### CelebA-HQ intrpolation
