@@ -1,11 +1,11 @@
-# BELM: Bidirectional Explicit Linear Multi-step Sampler for Exact Inversion in Diffusion Models
+# BELM: High-quality Exact Inversion sampler in Diffusion Models
 
 <div align="center">
 
 
 [![arXiv](https://img.shields.io/badge/arXiv%20paper-2410.07273-b31b1b.svg)](https://arxiv.org/abs/2410.07273)&nbsp;
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)&nbsp;
-
+<!-- [![License: MIT](https://img.shields.io/badge/zhihu-%E7%9F%A5%E4%B9%8E-informational.svg)](https://opensource.org/licenses/MIT)&nbsp; -->
 
 
 </div>
@@ -16,11 +16,16 @@
 </div> -->
 
 <!-- > Image Editing Results -->
-![Image Editing Results](assets/editing_show.drawio.png)
+> Images editing:<p align="center"> 
+    <img src="assets/editing_show.drawio.png" alt="Image Editing Results" width="80%"> 
+<p>
 
 <!-- > Interpolation Results -->
-![Interpolation Results](assets/belm_inter_show.drawio.png)
-
+<!-- ![Interpolation Results](assets/belm_inter_show.drawio.png) -->
+#### Image interpolation:
+<p align="center"> 
+    <img src="assets/belm_inter_show.drawio.png" alt="Image Editing Results" width="80%"> 
+<p>
 <!-- ## Abstract
 
 The inversion of diffusion model sampling, which aims to find the corresponding initial noise of a sample, plays a critical role in various tasks. Recently, several heuristic exact inversion samplers have been proposed to address the inexact inversion issue in a training-free manner. However, the theoretical properties of these heuristic samplers remain unknown and they often exhibit mediocre sampling quality. In this paper, we introduce a generic formulation, \emph{Bidirectional Explicit Linear Multi-step} (BELM) samplers, of the exact inversion samplers, which includes all previously proposed heuristic exact inversion samplers as special cases. The BELM formulation is derived from the variable-stepsize-variable-formula linear multi-step method via integrating a bidirectional explicit constraint. We highlight this bidirectional explicit constraint is the key of mathematically exact inversion. We systematically investigate the Local Truncation Error (LTE) within the BELM framework and show that the existing heuristic designs of exact inversion samplers yield sub-optimal LTE. Consequently, we propose the Optimal BELM (O-BELM) sampler through the LTE minimization approach. We conduct additional analysis to substantiate the theoretical stability and global convergence property of the proposed optimal sampler. Comprehensive experiments demonstrate our O-BELM sampler establishes the exact inversion property while achieving high-quality sampling. Additional experiments in image editing and image interpolation highlight the extensive potential of applying O-BELM in varying applications.  -->
