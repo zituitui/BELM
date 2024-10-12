@@ -38,26 +38,32 @@ the general k-step BELM:
 
 
 2-step BELM:
-$$\bar{\mathbf{x}}_{i-1} = a_{i,2}\bar{\mathbf{x}}_{i+1} +a_{i,1}\bar{\mathbf{x}}_{i} + b_{i,1} h_i\bar{\boldsymbol{\varepsilon}}_\theta(\bar{\mathbf{x}}_i,\bar{\sigma}_i).$$
+```math
+\bar{\mathbf{x}}_{i-1} = a_{i,2}\bar{\mathbf{x}}_{i+1} +a_{i,1}\bar{\mathbf{x}}_{i} + b_{i,1} h_i\bar{\boldsymbol{\varepsilon}}_\theta(\bar{\mathbf{x}}_i,\bar{\sigma}_i).
+```
 
 ### 🔥 We derive the optimal coefficients for BELM via LTE minimization.
 <!-- ![Some edits](assets/o-belm.jpg) -->
 
 <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
 
-**Proposition**  The LTE $\tau_i$ of BELM diffusion sampler, which is given by $\tau_i = \bar{\mathbf{x}}(t_{i-1}) - a_{i,2}\bar{\mathbf{x}}(t_{i+1}) -a_{i,1}\bar{\mathbf{x}}(t_{i}) - b_{i,1} h_i\bar{\boldsymbol{\varepsilon}}_\theta(\bar{\mathbf{x}}(t_i),\bar{\sigma}_i)$, can be accurate up to $\mathcal{O}\left({(h_{i}+h_{i+1})}^3\right)$ when formulae are designed as $a_{i,1} = \frac{h_{i+1}^2 - h_i^2}{h_{i+1}^2}$,$a_{i,2}=\frac{h_i^2}{h_{i+1}^2}$,$b_{i,1}=- \frac{h_i+h_{i+1}}{h_{i+1}} $.
+**Proposition**  The LTE $`\tau_i`$ of BELM diffusion sampler, which is given by $`\tau_i = \bar{\mathbf{x}}(t_{i-1}) - a_{i,2}\bar{\mathbf{x}}(t_{i+1}) -a_{i,1}\bar{\mathbf{x}}(t_{i}) - b_{i,1} h_i\bar{\boldsymbol{\varepsilon}}_\theta(\bar{\mathbf{x}}(t_i),\bar{\sigma}_i)`$, can be accurate up to $`\mathcal{O}\left({(h_{i}+h_{i+1})}^3\right)`$ when formulae are designed as $`a_{i,1} = \frac{h_{i+1}^2 - h_i^2}{h_{i+1}^2}`$,$`a_{i,2}=\frac{h_i^2}{h_{i+1}^2}`$,$`b_{i,1}=- \frac{h_i+h_{i+1}}{h_{i+1}} `$.
 
 </div>
 
-where $h_i = \frac{\sigma_i}{\alpha_i}-\frac{\sigma_{i-1}}{\alpha{i-1}}$
+where $`h_i = \frac{\sigma_i}{\alpha_i}-\frac{\sigma_{i-1}}{\alpha{i-1}}`$
 
 the Optimal-BELM (O-BELM) sampler:
 
-$$\mathbf{x}_{i-1} = \frac{h_i^2}{h_{i+1}^2}\frac{\alpha_{i-1}}{\alpha_{i+1}}\mathbf{x}_{i+1} +\frac{h_{i+1}^2 - h_i^2}{h_{i+1}^2}\frac{\alpha_{i-1}}{\alpha_{i}}\mathbf{x}_{i} - \frac{h_i(h_i+h_{i+1})}{h_{i+1}}\alpha_{i-1}\boldsymbol{\varepsilon}_\theta(\mathbf{x}_i,i).$$
+```math
+\mathbf{x}_{i-1} = \frac{h_i^2}{h_{i+1}^2}\frac{\alpha_{i-1}}{\alpha_{i+1}}\mathbf{x}_{i+1} +\frac{h_{i+1}^2 - h_i^2}{h_{i+1}^2}\frac{\alpha_{i-1}}{\alpha_{i}}\mathbf{x}_{i} - \frac{h_i(h_i+h_{i+1})}{h_{i+1}}\alpha_{i-1}\boldsymbol{\varepsilon}_\theta(\mathbf{x}_i,i).
+```
 
 The inversion of O-BELM diffusion sampler writes:
 
-$$\mathbf{x}_{i+1}= \frac{h_{i+1}^2}{h_i^2}\frac{\alpha_{i+1}}{\alpha_{i-1}}\mathbf{x}_{i-1} + \frac{h_i^2-h_{i+1}^2}{h_i^2}\frac{\alpha_{i+1}}{\alpha_{i}}\mathbf{x}_{i}+\frac{h_{i+1}(h_i+h_{i+1})}{h_i}\alpha_{i+1} \boldsymbol{\varepsilon}_\theta(\mathbf{x}_i,i).$$
+```math
+\mathbf{x}_{i+1}= \frac{h_{i+1}^2}{h_i^2}\frac{\alpha_{i+1}}{\alpha_{i-1}}\mathbf{x}_{i-1} + \frac{h_i^2-h_{i+1}^2}{h_i^2}\frac{\alpha_{i+1}}{\alpha_{i}}\mathbf{x}_{i}+\frac{h_{i+1}(h_i+h_{i+1})}{h_i}\alpha_{i+1} \boldsymbol{\varepsilon}_\theta(\mathbf{x}_i,i).
+```
 
 ## Run the code
 first, please switch to the root directory.
