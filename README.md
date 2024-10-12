@@ -2,7 +2,12 @@
 
 <div align="center">
 
+
 [![arXiv](https://img.shields.io/badge/arXiv%20paper-2410.07273-b31b1b.svg)](https://arxiv.org/abs/2410.07273)&nbsp;
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)&nbsp;
+
+
+
 </div>
 <!-- <div>
   <p align="center" style="font-size: larger;">
