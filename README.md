@@ -7,6 +7,7 @@ This repository contains the implementation of the NeurIPS 2024 paper "BELM: Bid
 Keywords: Diffusion Model, Exact Inversion, ODE Solver
 
 > Fangyikang Wang<sup>1</sup>, Hubery Yin<sup>2</sup>, Yuejiang Dong<sup>3</sup>, Huminhao Zhu<sup>1</sup>, Chao Zhang<sup>1</sup>, Hanbin Zhao<sup>1</sup>, Hui Qian<sup>1</sup>, Chen Li<sup>2</sup>
+> 
 > <sup>1</sup>Zhejiang University <sup>2</sup>WeChat, Tencent Inc. <sup>3</sup>Tsinghua University
 
 [![arXiv](https://img.shields.io/badge/arXiv%20paper-2410.07273-b31b1b.svg)](https://arxiv.org/abs/2410.07273)&nbsp;
