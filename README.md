@@ -32,7 +32,10 @@ The inversion of diffusion model sampling, which aims to find the corresponding 
 <!-- ![Some edits](assets/belm.jpg)
 ![Some edits](assets/2-belm.jpg) -->
 the general k-step BELM:
-$$\bar{\mathbf{x}}_{i-1} = \sum_{j=1}^{k} a_{i,j}\cdot \bar{\mathbf{x}}_{i-1+j} +\sum_{j=1}^{k-1}b_{i,j}\cdot h_{i-1+j}\cdot\bar{\boldsymbol{\varepsilon}}_\theta(\bar{\mathbf{x}}_{i-1+j},\bar{\sigma}_{i-1+j}).$$
+```math
+\bar{\mathbf{x}}_{i-1} = \sum_{j=1}^{k} a_{i,j}\cdot \bar{\mathbf{x}}_{i-1+j} +\sum_{j=1}^{k-1}b_{i,j}\cdot h_{i-1+j}\cdot\bar{\boldsymbol{\varepsilon}}_\theta(\bar{\mathbf{x}}_{i-1+j},\bar{\sigma}_{i-1+j}).
+```
+
 
 2-step BELM:
 $$\bar{\mathbf{x}}_{i-1} = a_{i,2}\bar{\mathbf{x}}_{i+1} +a_{i,1}\bar{\mathbf{x}}_{i} + b_{i,1} h_i\bar{\boldsymbol{\varepsilon}}_\theta(\bar{\mathbf{x}}_i,\bar{\sigma}_i).$$
