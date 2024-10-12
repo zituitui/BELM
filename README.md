@@ -2,6 +2,12 @@
 
 <div align="center">
 
+This repository contains the implementation of the NeurIPS 2024 paper "BELM: Bidirectional Explicit Linear Multi-step Sampler for Exact Inversion in Diffusion Models" 
+
+Keywords: Diffusion Model, Exact Inversion, ODE Solver
+
+> Fangyikang Wang<sup>1</sup>, Hubery Yin<sup>2</sup>, Yuejiang Dong<sup>3</sup>, Huminhao Zhu<sup>1</sup>, Chao Zhang<sup>1</sup>, Hanbin Zhao<sup>1</sup>, Hui Qian<sup>1</sup>, Chen Li<sup>2</sup>
+> <sup>1</sup>Zhejiang University <sup>2</sup>WeChat, Tencent Inc. <sup>3</sup>Tsinghua University
 
 [![arXiv](https://img.shields.io/badge/arXiv%20paper-2410.07273-b31b1b.svg)](https://arxiv.org/abs/2410.07273)&nbsp;
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)&nbsp;
@@ -16,13 +22,14 @@
 </div> -->
 
 <!-- > Image Editing Results -->
-> Images editing:<p align="center"> 
+<!-- > Images editing: -->
+<p align="center"> 
     <img src="assets/editing_show.drawio.png" alt="Image Editing Results" width="80%"> 
 <p>
 
 <!-- > Interpolation Results -->
 <!-- ![Interpolation Results](assets/belm_inter_show.drawio.png) -->
-#### Image interpolation:
+<!-- #### Image interpolation: -->
 <p align="center"> 
     <img src="assets/belm_inter_show.drawio.png" alt="Image Editing Results" width="80%"> 
 <p>
