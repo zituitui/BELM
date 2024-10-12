@@ -47,7 +47,7 @@ the general k-step BELM:
 
 <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
 
-**Proposition**  The LTE $`\tau_i`$ of BELM diffusion sampler, which is given by $`\tau_i = \bar{\mathbf{x}}(t_{i-1}) - a_{i,2}\bar{\mathbf{x}}(t_{i+1}) -a_{i,1}\bar{\mathbf{x}}(t_{i}) - b_{i,1} h_i\bar{\boldsymbol{\varepsilon}}_\theta(\bar{\mathbf{x}}(t_i),\bar{\sigma}_i)`$, can be accurate up to $`\mathcal{O}\left({(h_{i}+h_{i+1})}^3\right)`$ when formulae are designed as $`a_{i,1} = \frac{h_{i+1}^2 - h_i^2}{h_{i+1}^2}`$,$`a_{i,2}=\frac{h_i^2}{h_{i+1}^2}`$,$`b_{i,1}=- \frac{h_i+h_{i+1}}{h_{i+1}} `$.
+> **Proposition**  The LTE $`\tau_i`$ of BELM diffusion sampler, which is given by $`\tau_i = \bar{\mathbf{x}}(t_{i-1}) - a_{i,2}\bar{\mathbf{x}}(t_{i+1}) -a_{i,1}\bar{\mathbf{x}}(t_{i}) - b_{i,1} h_i\bar{\boldsymbol{\varepsilon}}_\theta(\bar{\mathbf{x}}(t_i),\bar{\sigma}_i)`$, can be accurate up to $`\mathcal{O}\left({(h_{i}+h_{i+1})}^3\right)`$ when formulae are designed as $`a_{i,1} = \frac{h_{i+1}^2 - h_i^2}{h_{i+1}^2}`$,$`a_{i,2}=\frac{h_i^2}{h_{i+1}^2}`$,$`b_{i,1}=- \frac{h_i+h_{i+1}}{h_{i+1}} `$.
 
 </div>
 
