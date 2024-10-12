@@ -1,4 +1,4 @@
-# BELM: High-quality Exact Inversion sampler in Diffusion Models
+# BELM: High-quality Exact Inversion sampler in Diffusion Models 🚀
 
 <div align="center">
 
@@ -43,7 +43,7 @@ The inversion of diffusion model sampling, which aims to find the corresponding 
 
 
 
-## What's New?
+## 🆕 What's New?
 ### 🔥 We use the thought of bidirectional explicit to enable exact inversion
 ![Some edits](assets/belm_linear.drawio.png)
 > **Schematic description** of DDIM (left) and BELM (right). DDIM uses $`\mathbf{x}_i`$ and $`\boldsymbol{\varepsilon}_\theta(\mathbf{x}_i,i)`$ to calculate $`\mathbf{x}_{i-1}`$ based on a linear relation between $`\mathbf{x}_i`$, $`\mathbf{x}_{i-1}`$ and $`\boldsymbol{\varepsilon}_\theta(\mathbf{x}_i,i)`$ (represented by the <span style="color:blue">blue line</span>). However, DDIM inversion uses $`\mathbf{x}_{i-1}`$ and $`\boldsymbol{\varepsilon}_\theta(\mathbf{x}_{i-1},i-1)`$ to calculate $`\mathbf{x}_{i}`$ based on a different linear relation represented by the <span style="color:red">red line</span>. This mismatch leads to the inexact inversion of DDIM. In contrast, BELM seeks to establish a linear relation between $`\mathbf{x}_{i-1}`$, $`\mathbf{x}_i`$, $`\mathbf{x}_{i+1}`$ and $`\boldsymbol{\varepsilon}_\theta(\mathbf{x}_{i}, i)`$ (represented by the <span style="color:green">green line</span>). BELM and its inversion are derived from this unitary relation, which facilitates the exact inversion. Specifically, BELM uses the linear combination of $`\mathbf{x}_i`$, $`\mathbf{x}_{i+1}`$ and $`\boldsymbol{\varepsilon}_\theta(\mathbf{x}_{i},i)`$ to calculate $`\mathbf{x}_{i-1}`$, and the BELM inversion uses the linear combination of $`\mathbf{x}_{i-1}`$, $`\mathbf{x}_i`$ and $`\boldsymbol{\varepsilon}_\theta(\mathbf{x}_{i},i)`$ to calculate $`\mathbf{x}_{i+1}`$. The bidirectional explicit constraint means this linear relation does not include the derivatives at the bidirectional endpoint, that is, $`\boldsymbol{\varepsilon}_\theta(\mathbf{x}_{i-1},i-1)`$ and $`\boldsymbol{\varepsilon}_\theta(\mathbf{x}_{i+1},i+1)`$.
@@ -85,7 +85,7 @@ The inversion of O-BELM diffusion sampler writes:
 \mathbf{x}_{i+1}= \frac{h_{i+1}^2}{h_i^2}\frac{\alpha_{i+1}}{\alpha_{i-1}}\mathbf{x}_{i-1} + \frac{h_i^2-h_{i+1}^2}{h_i^2}\frac{\alpha_{i+1}}{\alpha_{i}}\mathbf{x}_{i}+\frac{h_{i+1}(h_i+h_{i+1})}{h_i}\alpha_{i+1} \boldsymbol{\varepsilon}_\theta(\mathbf{x}_i,i).
 ```
 
-## Run the code
+## 👨🏻‍💻 Run the code 
 first, please switch to the root directory.
 #### CIFAR10 sampling
 ```shell
@@ -111,11 +111,11 @@ python3 ./cn_dm/scripts/reconstruction.py --test_num 10 --num_inference_steps 10
 Our editing code related to Stable Diffusion is intricately intertwined with our proprietary business code. Currently, we are working on separating these interconnected codes. Once this process is completed, we plan to make the codes publicly available on GitHub.
 
 
-## License
+## 🪪 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
-## Citation
+## 📝 Citation
 If our work assists your research, feel free to give us a star ⭐ or cite us using:
 ```
 @misc{wang2024belmbidirectionalexplicitlinear,
