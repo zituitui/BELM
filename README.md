@@ -4,11 +4,11 @@
 
 [![arXiv](https://img.shields.io/badge/arXiv%20paper-2410.07273-b31b1b.svg)](https://arxiv.org/abs/2410.07273)&nbsp;
 </div>
-<div>
+<!-- <div>
   <p align="center" style="font-size: larger;">
     <strong>NeurIPS 2024 </strong>
   </p>
-</div>
+</div> -->
 
 <!-- > Image Editing Results -->
 ![Image Editing Results](assets/editing_show.drawio.png)
