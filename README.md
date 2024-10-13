@@ -120,13 +120,11 @@ python3 ./scripts/celeb_interpolate.py --test_num 10 --batch_size 1 --num_infere
 ```
 
 #### Reconstruction error calculation
-how to calculate the reconstruction error
 ```shell
 python3 ./scripts/reconstruction.py --test_num 10 --num_inference_steps 100  --directory WHERE/YOUR/IMAGES/ARE --sampler_type belm
 ```
 
 #### Image editing
-how to calculate the reconstruction error
 ```shell
 python3 ./scripts/image_editing.py --num_inference_steps 100 --freeze_step 20 --guidance 3.5  --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id xxxxx/stable-diffusion-v1-5 --ori_im_path images/imagenet_dog_1.jpg --ori_prompt 'A dog' --res_prompt 'A Dalmatian'
 ```
