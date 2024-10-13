@@ -86,34 +86,50 @@ The inversion of O-BELM diffusion sampler writes:
 ```
 
 ## 👨🏻‍💻 Run the code 
+
+### 1) Get start
+
+* Python 3.9.0
+* CUDA 11.2
+* NVIDIA A100 40GB PCIe
+* Torch 2.0.1
+* Torchvision 0.15.2
+
+Please follow **[diffusers](https://github.com/huggingface/diffusers)** to install diffusers.
+
+### 2) Run
 first, please switch to the root directory.
 #### CIFAR10 sampling
 ```shell
-python3 ./cn_dm/scripts/cifar10.py --test_num 10 --batch_size 32 --num_inference_steps 100 --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id `$x/ddpm_ema_cifar10
+python3 ./scripts/cifar10.py --test_num 10 --batch_size 32 --num_inference_steps 100 --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id `$x/ddpm_ema_cifar10
 ```
 
 #### CelebA-HQ sampling
 ```shell
-python3 ./cn_dm/scripts/celeba.py --test_num 10 --batch_size 32 --num_inference_steps 100 --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id `$x/ddpm_ema_cifar10
+python3 ./scripts/celeba.py --test_num 10 --batch_size 32 --num_inference_steps 100 --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id `$x/ddpm_ema_cifar10
 ```
 
 #### FID evaluation
 ```shell
-python3 ./cn_dm/scripts/celeba.py --test_num 10 --batch_size 32 --num_inference_steps 100 --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id `$x/ddpm_ema_cifar10
+python3 ./scripts/celeba.py --test_num 10 --batch_size 32 --num_inference_steps 100 --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id `$x/ddpm_ema_cifar10
 ```
 
 #### CelebA-HQ intrpolation
 ```shell
-python3 ./cn_dm/scripts/celeb_interpolate.py --test_num 10 --batch_size 1 --num_inference_steps 100  --save_dir YOUR/SAVE/DIR 
+python3 ./scripts/celeb_interpolate.py --test_num 10 --batch_size 1 --num_inference_steps 100  --save_dir YOUR/SAVE/DIR 
 ```
 
 #### Reconstruction error calculation
 how to calculate the reconstruction error
 ```shell
-python3 ./cn_dm/scripts/reconstruction.py --test_num 10 --num_inference_steps 100  --directory WHERE/YOUR/IMAGES/ARE --sampler_type belm
+python3 ./scripts/reconstruction.py --test_num 10 --num_inference_steps 100  --directory WHERE/YOUR/IMAGES/ARE --sampler_type belm
 ```
 
-Our editing code related to Stable Diffusion is intricately intertwined with our proprietary business code. Currently, we are working on separating these interconnected codes. Once this process is completed, we plan to make the codes publicly available on GitHub.
+#### Image editing
+how to calculate the reconstruction error
+```shell
+python3 ./scripts/image_editing.py --num_inference_steps 100 --freeze_step 20 --guidance 3.5  --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id xxxxx/stable-diffusion-v1-5 --ori_im_path images/imagenet_dog_1.jpg --ori_prompt 'A dog' --res_prompt 'A Dalmatian'
+```
 
 
 ## 🪪 License

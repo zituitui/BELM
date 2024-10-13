@@ -102,10 +102,8 @@ def ave_mse(sd_params = None, sd_pipe=None, type = 'ddim',store_extra = True, te
 def main():
     parser = argparse.ArgumentParser(description="sampling script for reconstruction on xxx machine.")
     parser.add_argument('--test_num', type=int, default=100)
-    # parser.add_argument('--start_index', type=int, default=0)
-    # parser.add_argument('--seed', type=int, default=1)
     parser.add_argument('--num_inference_steps', type=int, default=50)
-    # parser.add_argument('--guidance', type=float, default=1.0)
+    parser.add_argument('--guidance', type=float, default=1.0)
     parser.add_argument('--sampler_type', type = str,default='lag', choices=['lag', 'ddim', 'bdia', 'edict', 'belm'])
     parser.add_argument('--save_dir', type=str, default='xxxx')
     parser.add_argument('--directory', type=str, default='xxxx')
