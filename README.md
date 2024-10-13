@@ -13,7 +13,7 @@ Keywords: Diffusion Model, Exact Inversion, ODE Solver
 [![arXiv](https://img.shields.io/badge/arXiv%20paper-2410.07273-b31b1b.svg)](https://arxiv.org/abs/2410.07273)&nbsp;
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)&nbsp;
 [![Zhihu](https://img.shields.io/badge/zhihu-%E7%9F%A5%E4%B9%8E-informational.svg)](https://opensource.org/licenses/MIT)&nbsp;
-
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fzituitui%2FBELM&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Visitors&edge_flat=false)](https://hits.seeyoufarm.com)
 
 </div>
 <!-- <div>
