@@ -1,4 +1,4 @@
-# BELM: High-quality Exact Inversion sampler in Diffusion Models 🚀
+# BELM: High-quality Exact Inversion sampler of Diffusion Models ⭐
 
 <div align="center">
 
@@ -118,13 +118,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📝 Citation
 If our work assists your research, feel free to give us a star ⭐ or cite us using:
 ```
-@misc{wang2024belmbidirectionalexplicitlinear,
-      title={BELM: Bidirectional Explicit Linear Multi-step Sampler for Exact Inversion in Diffusion Models}, 
-      author={Fangyikang Wang and Hubery Yin and Yuejiang Dong and Huminhao Zhu and Chao Zhang and Hanbin Zhao and Hui Qian and Chen Li},
-      year={2024},
-      eprint={2410.07273},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2410.07273}, 
+@article{wang2024belm,
+  title={BELM: Bidirectional Explicit Linear Multi-step Sampler for Exact Inversion in Diffusion Models},
+  author={Wang, Fangyikang and Yin, Hubery and Dong, Yuejiang and Zhu, Huminhao and Zhang, Chao and Zhao, Hanbin and Qian, Hui and Li, Chen},
+  journal={arXiv preprint arXiv:2410.07273},
+  year={2024}
 }
 ```
