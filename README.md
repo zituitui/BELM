@@ -17,9 +17,9 @@ Keywords: Diffusion Model, Exact Inversion, ODE Solver
 
 </div>
 
-<div style="text-align:center;">
+<p align="center">
     <img src="assets/recon.jpg" alt="Recon Results" style="width:65%;"/>
-</div>
+</p>
 
 
 <!-- > Image Editing Results -->
