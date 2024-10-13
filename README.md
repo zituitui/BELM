@@ -97,6 +97,11 @@ python3 ./cn_dm/scripts/cifar10.py --test_num 10 --batch_size 32 --num_inference
 python3 ./cn_dm/scripts/celeba.py --test_num 10 --batch_size 32 --num_inference_steps 100 --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id `$x/ddpm_ema_cifar10
 ```
 
+#### FID evaluation
+```shell
+python3 ./cn_dm/scripts/celeba.py --test_num 10 --batch_size 32 --num_inference_steps 100 --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id `$x/ddpm_ema_cifar10
+```
+
 #### CelebA-HQ intrpolation
 ```shell
 python3 ./cn_dm/scripts/celeb_interpolate.py --test_num 10 --batch_size 1 --num_inference_steps 100  --save_dir YOUR/SAVE/DIR 
