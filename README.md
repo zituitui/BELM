@@ -16,11 +16,9 @@ Keywords: Diffusion Model, Exact Inversion, ODE Solver
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fzituitui%2FBELM&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Visitors&edge_flat=false)](https://hits.seeyoufarm.com)
 
 </div>
-<!-- <div>
-  <p align="center" style="font-size: larger;">
-    <strong>NeurIPS 2024 </strong>
-  </p>
-</div> -->
+
+<img src="assets/recon.jpg" alt="Interpolation Results" width="350"/>
+
 
 <!-- > Image Editing Results -->
 <!-- > Images editing: -->
