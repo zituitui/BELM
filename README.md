@@ -2,7 +2,8 @@
 
 <div align="center">
 
-This repository is the **official implementation** of the NeurIPS 2024 paper "BELM: Bidirectional Explicit Linear Multi-step Sampler for Exact Inversion in Diffusion Models" 
+This repository is the official implementation of the **NeurIPS 2024** paper:
+_"BELM: Bidirectional Explicit Linear Multi-step Sampler for Exact Inversion in Diffusion Models"_ 
 
 Keywords: Diffusion Model, Exact Inversion, ODE Solver
 
