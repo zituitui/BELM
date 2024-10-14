@@ -221,10 +221,10 @@ def belm_forward(ddpm_pipe, num_inference_steps, batch_size, intermediate, inter
             coef_eps = sigma_s - sigma_t * coef_xt
             if i == 0:
                 if intermediate_second is not None:
-                    print('have intermediate_second')
+                    # print('have intermediate_second')
                     intermediate = intermediate_second.clone()
                 else:
-                    print('dont have intermediate_second')
+                    # print('dont have intermediate_second')
                     intermediate = coef_xt * intermediate + coef_eps * noise_pred
             else:
                 # calculate i-1
@@ -264,22 +264,21 @@ def slerp(val, low, high):
 
 def main():
     parser = argparse.ArgumentParser(description="sampling script for celeb interpolation on chongqing machine.")
-    parser.add_argument('--batch_size', type=int, default=128)
     parser.add_argument('--seed', type=int, default=1)
     parser.add_argument('--num_inference_steps', type=int, default=20)
     parser.add_argument('--sampler_type', type = str,default='lag', choices=['lag', 'ddim', 'bdia', 'edict','belm'])
     parser.add_argument('--save_dir', type=str, default='xxx')
-    parser.add_argument('--test_num', type=int, default=1000)
+    parser.add_argument('--test_num', type=int, default=10)
+    parser.add_argument('--model_id', type=str, default='/xxx/ddpm-ema-celebahq-256')
 
     args = parser.parse_args()
     dtype = torch.float32
     save_dir = args.save_dir
-    batch_size = args.batch_size
     num_inference_steps = args.num_inference_steps
     test_num = args.test_num
 
     # load model
-    model_id = "/xxx/ddpm-ema-celebahq-256"
+    model_id = args.model_id
 
     ddpm = DDIMPipeline.from_pretrained(model_id,torch_dtype=torch.float32)
     ddpm.unet.to('cuda')
@@ -288,13 +287,13 @@ def main():
             print('seed=', seed)
             if isinstance(ddpm.unet.config.sample_size, int):
                 image_shape = (
-                    batch_size,
+                    1,
                     ddpm.unet.config.in_channels,
                     ddpm.unet.config.sample_size,
                     ddpm.unet.config.sample_size,
                 )
             else:
-                image_shape = (batch_size, ddpm.unet.config.in_channels, *ddpm.unet.config.sample_size)
+                image_shape = (1, ddpm.unet.config.in_channels, *ddpm.unet.config.sample_size)
             intermediate1_1 = torch.randn(image_shape, generator=None, device='cuda', dtype=dtype).to('cuda')
             intermediate2_1 = torch.randn(image_shape, generator=None, device='cuda', dtype=dtype).to('cuda')
 
@@ -302,7 +301,7 @@ def main():
                 print(f'belm{num_inference_steps}')
                 grids = []
                 for percen in [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]:
-                    print('@@@', percen)
+                    print('Interpolation coefficient:', percen)
                     intermediatep = slerp(percen, intermediate1_1, intermediate2_1)
 
                     images = belm_forward(ddpm_pipe=ddpm, num_inference_steps=num_inference_steps, batch_size=1,

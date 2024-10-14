@@ -1,5 +1,5 @@
 import torch
-from cn_dm.test.adjoint_state.test_sd15 import to_pil
+from samplers.test_sd15 import to_pil
 
 def rev_forward(sd_pipe, sd_params, latents=None, p = 0.93):
 

@@ -16,9 +16,9 @@ from samplers.utils import PipelineLike
 
 def main():
     parser = argparse.ArgumentParser(description="sampling script for COCO14 on chongqing machine.")
-    parser.add_argument('--num_inference_steps', type=int, default=100)
-    parser.add_argument('--freeze_step', type=int, default=30)
-    parser.add_argument('--guidance', type=float, default=4.5)
+    parser.add_argument('--num_inference_steps', type=int, default=200)
+    parser.add_argument('--freeze_step', type=int, default=50)
+    parser.add_argument('--guidance', type=float, default=2.0)
     parser.add_argument('--sampler_type', type = str,default='lag', choices=['lag', 'ddim', 'bdia', 'edict', 'belm'])
     parser.add_argument('--save_dir', type=str, default='xx')
     parser.add_argument('--model_id', type=str, default='xxxxx/stable-diffusion-v1-5')
@@ -95,7 +95,7 @@ def main():
     pil = test_sd15.to_pil(latents=recon_latent, sd_pipe=sd_pipe)
     pil.save(os.path.join(args.save_dir,
         f'ori_{ori_prompt}_res_{res_prompt}_{sampler_type}_infer{num_inference_steps}_free{freeze_step}_g{guidance_scale}.png'))
-
+    print('editing finished')
 
 
 if __name__ == '__main__':

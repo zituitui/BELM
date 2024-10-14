@@ -5,11 +5,14 @@ import os
 import json
 import argparse
 sys.path.append(os.getcwd())
-from samplers import test_sd15, lagrange_reversible, BDIA, edict, DDIM
+from samplers import test_sd15, BELM, BDIA, edict, DDIM
 from PIL import Image
 import torchvision.transforms as transforms
 import numpy as np
 import glob
+from diffusers import StableDiffusionPipeline, DDIMScheduler
+from samplers.test_sd15 import  center_crop, load_im_into_format_from_path, pil_to_latents
+from samplers.utils import PipelineLike
 
 from samplers.test_sd15 import  center_crop, load_im_into_format_from_path, pil_to_latents
 def get_jpg_paths(directory):
@@ -42,7 +45,7 @@ def recon_test(im, sd_params = None, sd_pipe=None, type = 'ddim', store_extra = 
     elif type in ['bdia']:
         intermediate, second_intermediate = BDIA.latent_to_intermediate(sd_pipe=sd_pipe, sd_params=sd_params, latent=latent)
     elif type in ['lag','belm']:
-        intermediate, second_intermediate = lagrange_reversible.latent_to_intermediate(sd_pipe=sd_pipe, sd_params=sd_params, latent=latent)
+        intermediate, second_intermediate = BELM.latent_to_intermediate(sd_pipe=sd_pipe, sd_params=sd_params, latent=latent)
 
     # intermediate to latent
     if type in ['ddim']:
@@ -61,9 +64,9 @@ def recon_test(im, sd_params = None, sd_pipe=None, type = 'ddim', store_extra = 
                                                        intermediate_second=None)
     elif type in ['lag','belm']:
         if store_extra:
-            recon_latent = lagrange_reversible.intermediate_to_latent(sd_pipe=sd_pipe,sd_params=sd_params,intermediate = intermediate,intermediate_second= second_intermediate)
+            recon_latent = BELM.intermediate_to_latent(sd_pipe=sd_pipe,sd_params=sd_params,intermediate = intermediate,intermediate_second= second_intermediate)
         else:
-            recon_latent = lagrange_reversible.intermediate_to_latent(sd_pipe=sd_pipe, sd_params=sd_params,
+            recon_latent = BELM.intermediate_to_latent(sd_pipe=sd_pipe, sd_params=sd_params,
                                                                       intermediate=intermediate,
                                                                       intermediate_second=second_intermediate)
 
@@ -105,9 +108,8 @@ def main():
     parser.add_argument('--num_inference_steps', type=int, default=50)
     parser.add_argument('--guidance', type=float, default=1.0)
     parser.add_argument('--sampler_type', type = str,default='lag', choices=['lag', 'ddim', 'bdia', 'edict', 'belm'])
-    parser.add_argument('--save_dir', type=str, default='xxxx')
-    parser.add_argument('--directory', type=str, default='xxxx')
-
+    parser.add_argument('--directory', type=str, default='coco2014')
+    parser.add_argument('--model_id', type=str, default='xxxxx/stable-diffusion-v1-5')
     args = parser.parse_args()
     if args.sampler_type in ['bdia']:
         parser.add_argument('--bdia_gamma', type=float, default=1.0)
@@ -120,13 +122,27 @@ def main():
     test_num = args.test_num
     guidance_scale = args.guidance
     num_inference_steps = args.num_inference_steps
+    model_id = args.model_id
+
     # load model
-    sd_pipe, clip_model, ae_model, trans = test_sd15.load_models(torch.float32)
-    print("sd-1.5 model loaded")
+    device = 'cuda'
+    dtype = torch.float32
+    sd = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=dtype)
+    sche = DDIMScheduler(beta_end=0.012, beta_start=0.00085, beta_schedule='scaled_linear', clip_sample=False,
+                         timestep_spacing='linspace', set_alpha_to_one=False)
+
+    sd_pipe = PipelineLike(device=device, vae=sd.vae, text_encoder=sd.text_encoder, tokenizer=sd.tokenizer,
+                           unet=sd.unet, scheduler=sche)
+    sd_pipe.vae.to(device)
+    sd_pipe.text_encoder.to(device)
+    sd_pipe.unet.to(device)
+    print('model loaded')
 
     sd_params = {'prompt': '', 'negative_prompt': '', 'seed': 1, 'guidance_scale': guidance_scale,
                  'num_inference_steps': num_inference_steps, 'width': 512, 'height': 512}
     m1, m2 = ave_mse(sd_params=sd_params,sd_pipe=sd_pipe,type=sampler_type,test_num=test_num,directory=directory)
+    print('#####################  FINAL RESULT   ######################')
+    print(f'reconstruction mse average across {test_num} pictures using {sampler_type} sampler:')
     print(f'{sampler_type} mse1 on latent space = ', m1)
     print(f'{sampler_type} mse2 on pixel space = ', m2)
 

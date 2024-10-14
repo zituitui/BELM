@@ -406,11 +406,6 @@ def main():
                 for i,image in enumerate(images):
                     image.save(os.path.join(save_dir, f"ddim_cifar10_inference_pipe{num_inference_steps}_seed{seed}_{i}.png"))
                 print(f"ddim batch##{seed},done")
-            elif sampler_type in ['belm3']:
-                images = belm3_forward(ddpm_pipe=ddpm,batch_size=batch_size,num_inference_steps=num_inference_steps)
-                for i,image in enumerate(images):
-                    image.save(os.path.join(save_dir, f"belm3_cifar10_inference_pipe{num_inference_steps}_seed{seed}_{i}.png"))
-                print(f"ddim batch##{seed},done")
             elif sampler_type in ['bdia']:
                 images = bdia_forward(ddpm_pipe=ddpm,batch_size=batch_size, seed = seed,num_inference_steps=num_inference_steps,gamma=gamma)
                 for i,image in enumerate(images):

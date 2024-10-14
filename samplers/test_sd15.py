@@ -21,7 +21,7 @@ import diffusers
 from diffusers import StableDiffusionPipeline, DDIMScheduler
 from torchvision import transforms
 
-from cn_dm.test.adjoint_state.utils import PipelineLike, AestheticMLP
+from samplers.utils import PipelineLike, AestheticMLP
 from PIL import Image
 from functools import partial
 

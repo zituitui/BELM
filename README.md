@@ -1,4 +1,4 @@
-# BELM: High-quality Exact Inversion sampler of Diffusion Models ⭐
+# BELM: High-quality Exact Inversion sampler of Diffusion Models 🏆
 
 <div align="center">
 
@@ -89,11 +89,11 @@ The inversion of O-BELM diffusion sampler writes:
 
 ### 1) Get start
 
-* Python 3.9.0
-* CUDA 11.2
+* Python 3.8.12
+* CUDA 11.7
 * NVIDIA A100 40GB PCIe
-* Torch 2.0.1
-* Torchvision 0.15.2
+* Torch 2.0.0
+* Torchvision 0.14.0
 
 Please follow **[diffusers](https://github.com/huggingface/diffusers)** to install diffusers.
 
@@ -101,22 +101,22 @@ Please follow **[diffusers](https://github.com/huggingface/diffusers)** to insta
 first, please switch to the root directory.
 #### CIFAR10 sampling
 ```shell
-python3 ./scripts/cifar10.py --test_num 10 --batch_size 32 --num_inference_steps 100 --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id `$x/ddpm_ema_cifar10
+python3 ./scripts/cifar10.py --test_num 10 --batch_size 32 --num_inference_steps 100 --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id xxx/ddpm_ema_cifar10
 ```
 
 #### CelebA-HQ sampling
 ```shell
-python3 ./scripts/celeba.py --test_num 10 --batch_size 32 --num_inference_steps 100 --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id `$x/ddpm_ema_cifar10
+python3 ./scripts/celeba.py --test_num 10 --batch_size 32 --num_inference_steps 100 --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id xxx/ddpm_ema_cifar10
 ```
 
 #### FID evaluation
 ```shell
-python3 ./scripts/celeba.py --test_num 10 --batch_size 32 --num_inference_steps 100 --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id `$x/ddpm_ema_cifar10
+python3 ./scripts/celeba.py --test_num 10 --batch_size 32 --num_inference_steps 100 --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id xxx/ddpm_ema_cifar10
 ```
 
-#### CelebA-HQ intrpolation
+#### intrpolation
 ```shell
-python3 ./scripts/celeb_interpolate.py --test_num 10 --batch_size 1 --num_inference_steps 100  --save_dir YOUR/SAVE/DIR 
+python3 ./scripts/interpolate.py --test_num 10 --batch_size 1 --num_inference_steps 100  --save_dir YOUR/SAVE/DIR --model_id xx
 ```
 
 #### Reconstruction error calculation
@@ -126,7 +126,7 @@ python3 ./scripts/reconstruction.py --test_num 10 --num_inference_steps 100  --d
 
 #### Image editing
 ```shell
-python3 ./scripts/image_editing.py --num_inference_steps 100 --freeze_step 20 --guidance 3.5  --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id xxxxx/stable-diffusion-v1-5 --ori_im_path images/imagenet_dog_1.jpg --ori_prompt 'A dog' --res_prompt 'A Dalmatian'
+python3 ./scripts/image_editing.py --num_inference_steps 200 --freeze_step 50 --guidance 2.0  --sampler_type belm --save_dir YOUR/SAVE/DIR --model_id xxxxx/stable-diffusion-v1-5 --ori_im_path images/imagenet_dog_1.jpg --ori_prompt 'A dog' --res_prompt 'A Dalmatian'
 ```
 
 
