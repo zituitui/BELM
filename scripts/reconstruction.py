@@ -24,13 +24,13 @@ def get_jpg_paths(directory):
     return jpg_paths
 def transform_image_array(image_array):
     if image_array.ndim == 2:
-        # 灰度图像, 需要复制通道
+        # If it is a grayscale image, the channel needs to be copied
         return np.repeat(image_array[:, :, np.newaxis], 3, axis=2)
     elif image_array.ndim == 3 and image_array.shape[2] == 3:
-        # RGB 图像, 无需转换
+        # If it is an RGB image, no conversion is necessary
         return image_array
     else:
-        raise ValueError("输入的图像数组格式不正确")
+        raise ValueError("The input image array format is incorrect")
 
 def recon_test(im, sd_params = None, sd_pipe=None, type = 'ddim', store_extra = True):
     # disk to pil_image
@@ -87,12 +87,10 @@ def recon_test(im, sd_params = None, sd_pipe=None, type = 'ddim', store_extra = 
     return mse1, mse2
 
 def ave_mse(sd_params = None, sd_pipe=None, type = 'ddim',store_extra = True, test_num=100, directory = 'xxx'):
-    # directory = "xxx/coco2014/fid_test_3W"
     jpg_paths = get_jpg_paths(directory)
     mse1_list = []
     mse2_list = []
     for i,im in enumerate(jpg_paths[0:test_num]):
-        # print('##',i,'im_id = ', im)
         print(type,'##',i)
         mse1, mse2 = recon_test(im=im,sd_params=sd_params,sd_pipe=sd_pipe,type=type,store_extra=store_extra)
         mse1_list.append(mse1)

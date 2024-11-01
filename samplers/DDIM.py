@@ -34,8 +34,6 @@ def intermediate_to_latent(sd_pipe, sd_params, intermediate=None, freeze_step = 
         for i, t in enumerate(timesteps):
             if i < freeze_step:
                 continue
-            # print('i = ',i,'t = ',t)
-            # print(sd_pipe.scheduler.alphas_cumprod[timesteps[i]].to(torch.float32))
             latent_model_input = torch.cat([intermediate] * 2) if do_classifier_free_guidance else intermediate
             noise_pred = sd_pipe.unet(
                 latent_model_input,
@@ -95,14 +93,11 @@ def latent_to_intermediate(sd_pipe, sd_params, latent = None, freeze_step = 0):
         print('intermediate are None')
 
     xis.append(latent)
-    prev_noise = None
     with torch.no_grad():
         for i, t in enumerate(timesteps):
             if i >= num_inference_steps - freeze_step:
                 continue
             index = num_inference_steps - i - 1
-            # print('i = ', i, 't = ', t,'index = ',index)
-            # print(sd_pipe.scheduler.alphas_cumprod[timesteps[index]].to(torch.float32))
             latent_model_input = torch.cat([latent] * 2) if do_classifier_free_guidance else latent
             time = timesteps[index+1] if index < num_inference_steps - 1 else 1
             noise_pred = sd_pipe.unet(

@@ -45,13 +45,6 @@ def rev_forward(sd_pipe, sd_params, latents=None, n_mid = 0):
             if do_classifier_free_guidance:
                 noise_pred_uncond, noise_pred_text = noise_pred.chunk(2)
                 noise_pred = noise_pred_uncond + guidance_scale * (noise_pred_text - noise_pred_uncond)
-            # if not prev_noise is None:
-            #     print(i, abs(prev_noise - noise_pred).mean())
-            #     new_noise_pred = 0.5 * noise_pred + 0.5 * prev_noise
-            # else:
-            #     new_noise_pred = noise_pred
-            # prev_noise = noise_pred.clone()
-            # new_noise_pred = noise_pred
 
             if i < num_inference_steps - 1:
                 alpha_s = sd_pipe.scheduler.alphas_cumprod[timesteps[i + 1]].to(torch.float32)
@@ -60,15 +53,10 @@ def rev_forward(sd_pipe, sd_params, latents=None, n_mid = 0):
                 alpha_s = 1
                 alpha_t = sd_pipe.scheduler.alphas_cumprod[t].to(torch.float32)
 
-            # n_mid = 10
-            # if i > n_mid:
-            #     alpha_t = sd_pipe.scheduler.alphas_cumprod[timesteps[i-1]].to(torch.float32)
             sigma_s = (1 - alpha_s)**0.5
             sigma_t = (1 - alpha_t)**0.5
             alpha_s = alpha_s**0.5
             alpha_t = alpha_t**0.5
-            # print('new#', i , ' sigma_t / alpha_t: ', sigma_t / alpha_t)
-            # print('new#', i, ' sigma_s / alpha_s - sigma_t / alpha_t: ', sigma_s / alpha_s - sigma_t / alpha_t)
 
             coef_xt = alpha_s / alpha_t
             coef_eps = sigma_s - sigma_t * coef_xt
@@ -96,15 +84,7 @@ def rev_forward(sd_pipe, sd_params, latents=None, n_mid = 0):
                 # iterate
                 latents = coef_1 * noise_pred + coef_2 * xis[-2] + coef_3 * xis[-1]
 
-                # coef_xt = coef_xt - alpha_p / alpha_t
-                # coef_eps_2 = sigma_p - sigma_t * alpha_p / alpha_t
-                # coef_eps = coef_eps - coef_eps_2
-                # print(latents.shape)
-                # print(xis[-1].shape)
-                # assert torch.equal(latents, xis[-1])
-                # latents = xis[-2] + coef_xt * xis[-1] + coef_eps * noise_pred
             xis.append(latents)
-            prev_noise = noise_pred.clone()
     return to_pil(xis[-1], sd_pipe)
 
 def intermediate_to_latent(sd_pipe, sd_params, intermediate=None, intermediate_second = None, freeze_step = 0):
@@ -275,11 +255,3 @@ def latent_to_intermediate(sd_pipe, sd_params, latent=None, freeze_step = 0):
                 latent = coef_x_i_minus_2 * xis[-2] + coef_x_i_minus_1 * xis[-1] + coef_eps * noise_pred
             xis.append(latent)
     return xis[-1], xis[-2]
-
-# import torch
-# from cn_dm.test.adjoint_state import test_sd15, lagrange_reversible
-# sd_pipe, clip_model, ae_model, trans = test_sd15.load_models_SD2_base(torch.float32)
-# prompt = 'Girl with cat, symmetrical face, sharp focus, intricate details, soft lighting, detailed face, blur background'
-# negative_prompt='lowres, error, cropped, worst quality, low quality, jpeg artifacts, out of frame, watermark, signature, deformed, ugly, mutilated, disfigured, text, extra limbs, face cut, head cut, extra fingers, extra arms, poorly drawn face, mutation, bad proportions, cropped head, malformed limbs, mutated hands, fused fingers, long neck'
-# sd_params = {'prompt':prompt, 'negative_prompt':negative_prompt, 'seed':91254625325, 'guidance_scale':7.5, 'num_inference_steps':20, 'width':512, 'height':512}
-# res = lagrange_reversible.rev_forward(sd_pipe, sd_params, latents=None)

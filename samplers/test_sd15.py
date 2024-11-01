@@ -31,25 +31,6 @@ def load_models(dtype=torch.float16):
     model_path = 'xxxxx/stable-diffusion-v1-5'
     sd_15 = StableDiffusionPipeline.from_pretrained(model_path, torch_dtype=dtype)
 
-    # clip
-    # clip_model = CLIPModel.from_pretrained('xxxxx/clip-vit-large-patch14/model', torch_dtype=dtype)
-    # clip_model.to(device)
-
-    # aesthetic
-    # s = torch.load("/mnt/chongqinggeminiceph1fs/geminicephfs/mm-base-vision/hubery/4_models/pre_models/improved-aesthetic-predictor/sac+logos+ava1-l14-linearMSE.pth")
-    # ae_model = AestheticMLP(768)
-    # ae_model.load_state_dict(s)
-    # ae_model.to(device)
-    # ae_model.eval()
-
-    # trans = transforms.Compose(
-    #     [
-    #     transforms.Resize(224, interpolation=transforms.InterpolationMode.BICUBIC),
-    #     transforms.CenterCrop(224),
-    #     transforms.ToTensor(),
-    #     transforms.Normalize(mean=(0.48145466, 0.4578275, 0.40821073), std=(0.26862954, 0.26130258, 0.27577711)),
-    #     ]
-    # )
 
     sche = DDIMScheduler(beta_end=0.012, beta_start=0.00085, beta_schedule='scaled_linear', clip_sample=False, timestep_spacing='linspace', set_alpha_to_one=False)
 
@@ -68,26 +49,6 @@ def load_models_SD2_base(dtype=torch.float16):
     # sd
     model_path = 'xxxxxx/stable-diffusion-2-base'
     sd_2 = StableDiffusionPipeline.from_pretrained(model_path, torch_dtype=dtype)
-
-    # clip
-    # clip_model = CLIPModel.from_pretrained('/mnt/chongqinggeminiceph1fs/geminicephfs/mm-base-vision/hubery/4_models/pre_models/clip-vit-large-patch14/model', torch_dtype=dtype)
-    # clip_model.to(device)
-
-    # aesthetic
-    # s = torch.load("/mnt/chongqinggeminiceph1fs/geminicephfs/mm-base-vision/hubery/4_models/pre_models/improved-aesthetic-predictor/sac+logos+ava1-l14-linearMSE.pth")
-    # ae_model = AestheticMLP(768)
-    # ae_model.load_state_dict(s)
-    # ae_model.to(device)
-    # ae_model.eval()
-
-    # trans = transforms.Compose(
-    #     [
-    #     transforms.Resize(224, interpolation=transforms.InterpolationMode.BICUBIC),
-    #     transforms.CenterCrop(224),
-    #     transforms.ToTensor(),
-    #     transforms.Normalize(mean=(0.48145466, 0.4578275, 0.40821073), std=(0.26862954, 0.26130258, 0.27577711)),
-    #     ]
-    # )
 
     sche = DDIMScheduler(beta_end=0.012, beta_start=0.00085, beta_schedule='scaled_linear', clip_sample=False, timestep_spacing='linspace', set_alpha_to_one=False)
 
@@ -517,17 +478,3 @@ def pil_to_latents(pil_image, sd_pipe):
         # print('latent.shape = ',latents.shape)
     latents = latents * sd_pipe.vae.config.scaling_factor
     return latents
-
-# sd_pipe, clip_model, ae_model, trans = test_sd15.load_models(torch.float32)
-# from functools import partial
-# lam_func_aes_score = partial(test_sd15.get_score, device='cuda', clip_model=clip_model, ae_model=ae_model)
-# models = {'sd_pipe':sd_pipe}
-# sd_params = {'prompt':prompt, 'negative_prompt':negative_prompt, 'seed':91254625325, 'guidance_scale':7.5, 'num_inference_steps':20, 'width':512, 'height':512}
-# schemes = [{'i':10, 'iter':1, 'adj_strength':5}, {'i':5, 'iter':2, 'adj_strength':10}]
-
-# from cn_dm.test.adjoint_state import test_sd15, time_reversible
-# from importlib import reload
-# reload(test_sd15)
-
-# img = sd_pipe(prompt = 'Girl with cat, symmetrical face, sharp focus, intricate details, soft lighting, detailed face, blur background', negative_prompt='lowres, error, cropped, worst quality, low quality, jpeg artifacts, out of frame, watermark, signature, deformed, ugly, mutilated, disfigured, text, extra limbs, face cut, head cut, extra fingers, extra arms, poorly drawn face, mutation, bad proportions, cropped head, malformed limbs, mutated hands, fused fingers, long neck', seed=91254625325)[0]
-

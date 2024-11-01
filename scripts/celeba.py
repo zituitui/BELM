@@ -61,7 +61,6 @@ def ddim_forward(ddpm_pipe, seed, num_inference_steps, states=None):
 
 def belm_forward(ddpm_pipe, batch_size, num_inference_steps, states=None):
     dtype = torch.float32
-    # torch.manual_seed(seed)
     ddpm_pipe.scheduler.set_timesteps(num_inference_steps, device='cuda')
     timesteps = ddpm_pipe.scheduler.timesteps
 
@@ -81,7 +80,6 @@ def belm_forward(ddpm_pipe, batch_size, num_inference_steps, states=None):
     xis.append(states)
     with torch.no_grad():
         for i, t in enumerate(timesteps):
-            # print('###', i)
             noise_pred = ddpm_pipe.unet(
                 states,
                 t,

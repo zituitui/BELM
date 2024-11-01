@@ -94,8 +94,6 @@ def ddim_inversion(ddpm_pipe, num_inference_steps, latent):
     with torch.no_grad():
         for i, t in enumerate(timesteps):
             index = num_inference_steps - i - 1
-            # print('i = ', i, 't = ', t,'index = ',index)
-            # print(sd_pipe.scheduler.alphas_cumprod[timesteps[index]].to(torch.float32))
 
             time = timesteps[index + 1] if index < num_inference_steps - 1 else 1
             noise_pred = ddpm_pipe.unet(
@@ -136,8 +134,6 @@ def belm_inversion(ddpm_pipe, num_inference_steps, latent):
     with torch.no_grad():
         for i, t in enumerate(timesteps):
             index = num_inference_steps - i - 1
-            # print('i = ', i, 't = ', t,'index = ',index)
-            # print(sd_pipe.scheduler.alphas_cumprod[timesteps[index]].to(torch.float32))
 
             time = timesteps[index + 1] if index < num_inference_steps - 1 else 1
             noise_pred = ddpm_pipe.unet(

@@ -227,7 +227,6 @@ def belm3_forward(ddpm_pipe, batch_size, num_inference_steps, states=None):
                 print(a_i1n, a_i2n, a_i3n, b_i1n, b_i2n)
 
                 # iterate
-                # states = coef_1 * noise_pred + coef_2 * xis[-2] + coef_3 * xis[-1]
                 states =  a_i1*xis[-1]*(alpha_s)/alpha_t + a_i2*xis[-2]*(alpha_s)/alpha_p + a_i3*xis[-3]*(alpha_s)/alpha_k + b_i1*h_i*noise_pred *(alpha_s)+ b_i2*h_i1*prev_noise*(alpha_s)
             xis.append(states)
             prev_noise = noise_pred.clone()
