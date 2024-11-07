@@ -240,7 +240,7 @@ def latent_to_intermediate(sd_pipe, sd_params, latent=None, freeze_step = 0):
 
 
             if i == 0:
-                latent = (alpha_i/alpha_i_minus_1)*latent+(sigma_i-(alpha_i/alpha_i_minus_1)*sigma_i_minus_1)
+                latent = (alpha_i/alpha_i_minus_1)*latent+(sigma_i-(alpha_i/alpha_i_minus_1)*sigma_i_minus_1) * noise_pred
             else:
                 alpha_i_minus_2 = 1 if i == 1 else sd_pipe.scheduler.alphas_cumprod[timesteps[index + 2]].to(torch.float32)
                 sigma_i_minus_2 = (1 - alpha_i_minus_2) ** 0.5
