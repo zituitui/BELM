@@ -140,11 +140,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📝 Citation
 If our work assists your research, feel free to give us a star ⭐ or cite us using:
 ```
-@article{wang2024belm,
-  title={BELM: Bidirectional Explicit Linear Multi-step Sampler for Exact Inversion in Diffusion Models},
-  author={Wang, Fangyikang and Yin, Hubery and Dong, Yuejiang and Zhu, Huminhao and Zhang, Chao and Zhao, Hanbin and Qian, Hui and Li, Chen},
-  journal={arXiv preprint arXiv:2410.07273},
-  year={2024}
+@inproceedings{
+wang2024belm,
+title={{BELM}: Bidirectional Explicit Linear Multi-step Sampler for Exact Inversion in Diffusion Models},
+author={Fangyikang Wang and Hubery Yin and Yue-Jiang Dong and Huminhao Zhu and Chao Zhang and Hanbin Zhao and Hui Qian and Chen Li},
+booktitle={The Thirty-eighth Annual Conference on Neural Information Processing Systems},
+year={2024},
+url={https://openreview.net/forum?id=ccQ4fmwLDb}
 }
 ```
 
