@@ -134,7 +134,7 @@ python3 ./scripts/image_editing.py --num_inference_steps 200 --freeze_step 50 --
 
 
 ## 🪪 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
 
 
 ## 📝 Citation
